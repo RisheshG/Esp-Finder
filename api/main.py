@@ -12,7 +12,6 @@ UPLOAD_FOLDER = 'uploads'
 PROCESSED_FOLDER = 'processed'
 progress = {}
 
-# Ensure upload and processed directories exist
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(PROCESSED_FOLDER, exist_ok=True)
 
@@ -130,8 +129,3 @@ def identify_single_email():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-import os
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
