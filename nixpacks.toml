@@ -1,5 +1,5 @@
 [phases.setup]
-runtime = "python"
+runtime = "python-3.9"
 
 [phases.start]
 cmd = "python3 app.py"
