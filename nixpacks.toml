@@ -1,3 +1,5 @@
-[phases]
-setup = "python"
-start = { cmd = "python3 app.py" }
+[phases.setup]
+runtime = "python"
+
+[phases.start]
+cmd = "python3 app.py"
