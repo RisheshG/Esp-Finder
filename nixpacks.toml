@@ -1,6 +1,0 @@
-[phases]
-[phases.setup]
-runtime = "python"
-
-[phases.start]
-cmd = "python3 app.py"
