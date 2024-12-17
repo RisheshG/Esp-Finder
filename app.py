@@ -82,11 +82,11 @@ def process_file():
             df = pd.read_csv(file_path)
         except pd.errors.ParserError as e:
             progress[task_id] = -1
-            return jsonify({'error': f'CSV parsing error: {e}'}), 400
+            return
 
         if email_column not in df.columns:
             progress[task_id] = -1
-            return jsonify({'error': 'Specified email column not found'}), 400
+            return
 
         total_rows = len(df)
         for index, row in df.iterrows():
@@ -118,20 +118,6 @@ def download_file(filename):
     else:
         return jsonify({'error': 'File not found'}), 404
 
-@app.route('/identify', methods=['POST'])
-def identify_single_email():
-    data = request.json
-    if 'email' not in data:
-        return jsonify({'error': 'No email provided'}), 400
-
-    email = data['email']
-    esp = identify_esp(email)
-    return jsonify({'email': email, 'esp': esp})
-
 if __name__ == '__main__':
-    app.run(debug=True)
-
-import os
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
