@@ -118,6 +118,16 @@ def download_file(filename):
     else:
         return jsonify({'error': 'File not found'}), 404
 
+@app.route('/identify', methods=['POST'])
+def identify_single_email():
+    data = request.json
+    if 'email' not in data:
+        return jsonify({'error': 'No email provided'}), 400
+
+    email = data['email']
+    esp = identify_esp(email)
+    return jsonify({'email': email, 'esp': esp})
+
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
